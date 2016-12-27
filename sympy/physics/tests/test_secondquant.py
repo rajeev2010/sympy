@@ -1191,3 +1191,11 @@ def test_internal_external_pqrs_AT():
     ]
     for permut in exprs[1:]:
         assert substitute_dummies(exprs[0]) == substitute_dummies(permut)
+
+        
+def test_latex_creation_operators():
+    from sympy.printing.latex import latex
+    from sympy.physics.secondquant import B, F, Dagger
+    from sympy.abc import x
+    assert latex(Dagger(F(x))) == r"a^\dagger_{x}"
+    assert latex(Dagger(B(x))) == r"b^\dagger_{x}"
